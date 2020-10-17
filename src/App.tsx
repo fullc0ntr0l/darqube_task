@@ -1,58 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import { RouteComponentProps, Router } from "@reach/router";
+import styles from "./App.module.css";
+import { BookmarksView } from "./components/bookmarksView";
+import { NewsView } from "./components/newsView";
+import { NavigationLink } from "./components/navigationLink";
+import { SearchInput } from "./components/searchInput";
+import { LatestNewsView } from "./components/latestNewsView";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+interface IMainViewProps extends RouteComponentProps {
+  children: React.ReactNode;
 }
 
-export default App;
+const PAGES = [
+  { path: "/", component: NewsView, label: "News" },
+  { path: "/bookmarks", component: BookmarksView, label: "Bookmarks" },
+];
+
+export const App = () => {
+  return (
+    <Router>
+      <MainView path="/">
+        {PAGES.map((page) =>
+          React.createElement(page.component, {
+            key: page.label,
+            path: page.path,
+          })
+        )}
+      </MainView>
+    </Router>
+  );
+};
+
+const MainView = (props: IMainViewProps) => {
+  return (
+    <div className={styles.app}>
+      <div className={styles.header}>
+        <div>
+          {PAGES.map((page) => (
+            <NavigationLink
+              key={page.label}
+              to={page.path}
+              label={page.label}
+            />
+          ))}
+        </div>
+        <SearchInput />
+      </div>
+      <div className={styles.content}>
+        <LatestNewsView />
+        {props.children}
+      </div>
+    </div>
+  );
+};

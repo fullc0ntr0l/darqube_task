@@ -1,0 +1,16 @@
+.link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 28px;
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+.link:not(:last-child) {
+  margin-right: 28px;
+}
+
+.selectedLink {
+  composes: link;
+  opacity: 1;
+}
