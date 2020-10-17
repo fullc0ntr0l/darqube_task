@@ -1,4 +1,16 @@
-export const news = [
+export interface INews {
+  id: number;
+  category: string;
+  datetime: number;
+  headline: string;
+  image: string;
+  related: string;
+  source: string;
+  summary: string;
+  url: string;
+}
+
+export const news: INews[] = [
   {
     category: "company",
     datetime: 1602894360,

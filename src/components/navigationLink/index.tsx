@@ -1,7 +1,7 @@
 import * as React from "react";
 import cn from "classnames";
 import { Link, useMatch } from "@reach/router";
-import styles from "./navigationLink.module.css";
+import styles from "./index.module.css";
 
 interface IProps {
   to: string;
