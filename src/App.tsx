@@ -1,11 +1,11 @@
 import React from "react";
 import { RouteComponentProps, Router } from "@reach/router";
 import styles from "./App.module.css";
-import { BookmarksView } from "./components/bookmarksView";
-import { NewsView } from "./components/newsView";
-import { NavigationLink } from "./components/navigationLink";
-import { SearchInput } from "./components/searchInput";
-import { LatestNewsView } from "./components/latestNewsView";
+import { BookmarksView } from "./components/bookmarksView/bookmarksView";
+import { NewsView } from "./components/newsView/newsView";
+import { NavigationLink } from "./components/navigationLink/navigationLink";
+import { SearchInput } from "./components/searchInput/searchInput";
+import { LatestNewsView } from "./components/latestNewsView/latestNewsView";
 
 interface IMainViewProps extends RouteComponentProps {
   children: React.ReactNode;
