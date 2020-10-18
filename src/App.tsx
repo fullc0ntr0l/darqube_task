@@ -44,10 +44,10 @@ const MainView = (props: IMainViewProps) => {
             />
           ))}
         </div>
-        <SearchInput />
+        <SearchInput className={styles.search} />
       </div>
       <div className={styles.content}>
-        <LatestNewsView />
+        <LatestNewsView className={styles.latestNews} />
         {props.children}
       </div>
     </div>

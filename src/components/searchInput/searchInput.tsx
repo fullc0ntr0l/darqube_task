@@ -1,6 +1,13 @@
 import * as React from "react";
+import cn from "classnames";
 import styles from "./searchInput.module.css";
 
-export const SearchInput = (): JSX.Element => {
-  return <input type="text" placeholder="Search" className={styles.input} />;
+interface IProps {
+  className?: string;
+}
+
+export const SearchInput = ({ className }: IProps): JSX.Element => {
+  const inputClassName = cn(styles.input, className);
+
+  return <input type="text" placeholder="Search" className={inputClassName} />;
 };

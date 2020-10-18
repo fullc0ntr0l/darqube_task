@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 875px;
+}
+
+.card {
+  margin-bottom: 16px;
+}
+
+@media only screen and (max-width: 1286px) {
+  .root {
+    width: 578px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .firstCard {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 641px) {
+  .root {
+    width: 281px;
+  }
+}

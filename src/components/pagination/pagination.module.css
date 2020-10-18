@@ -1,0 +1,39 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.text {
+  font-size: 12px;
+}
+
+.textTotal {
+  opacity: 0.25;
+}
+
+.button {
+  border-radius: 9999px;
+  background-color: #3c3c3c;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  height: 26px;
+  width: 116px;
+}
+
+.button:not(:last-child) {
+  margin-right: 8px;
+}
+
+@media only screen and (max-width: 641px) {
+  .button {
+    width: 80px;
+  }
+}
