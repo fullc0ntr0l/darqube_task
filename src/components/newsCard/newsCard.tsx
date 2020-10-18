@@ -1,11 +1,11 @@
 import * as React from "react";
 import { format } from "date-fns";
 import cn from "classnames";
-import { INews } from "../../testData";
 import styles from "./newsCard.module.css";
 import upperRightArrow from "../../assets/upperRightArrow.svg";
 import bookmarkAdd from "../../assets/bookmarkAdd.svg";
 import rightArrow from "../../assets/rightArrow.svg";
+import { INews } from "../../store/news";
 
 interface IProps {
   data: INews;
@@ -46,7 +46,9 @@ export const NewsCard = ({ data, className, latest }: IProps): JSX.Element => {
           )}
           <div className={styles.date}>{date}</div>
           <div className={styles.separator} />
-          <div className={styles.source}>{data.source}</div>
+          <div className={styles.source} title={data.source}>
+            {data.source}
+          </div>
         </div>
         <div className={styles.rightFooter}>
           <img src={upperRightArrow} alt="Go to url" className={styles.icon} />

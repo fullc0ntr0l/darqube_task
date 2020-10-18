@@ -1,55 +1,64 @@
 import React from "react";
-import { RouteComponentProps, Router } from "@reach/router";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./App.module.css";
-import { BookmarksView } from "./components/bookmarksView/bookmarksView";
 import { NewsView } from "./components/newsView/newsView";
 import { NavigationLink } from "./components/navigationLink/navigationLink";
 import { SearchInput } from "./components/searchInput/searchInput";
 import { LatestNewsView } from "./components/latestNewsView/latestNewsView";
-
-interface IMainViewProps extends RouteComponentProps {
-  children: React.ReactNode;
-}
-
-const PAGES = [
-  { path: "/", component: NewsView, label: "News" },
-  { path: "/bookmarks", component: BookmarksView, label: "Bookmarks" },
-];
+import { Spinner } from "./components/spinner/spinner";
+import {
+  fetchNews,
+  selectIsFetching,
+  NewsView as StateNewsView,
+  selectFetchError,
+} from "./store/news";
 
 export const App = () => {
-  return (
-    <Router>
-      <MainView path="/">
-        {PAGES.map((page) =>
-          React.createElement(page.component, {
-            key: page.label,
-            path: page.path,
-          })
-        )}
-      </MainView>
-    </Router>
-  );
-};
+  const dispatch = useDispatch();
 
-const MainView = (props: IMainViewProps) => {
+  React.useEffect(() => {
+    dispatch(fetchNews());
+  }, [dispatch]);
+
   return (
     <div className={styles.app}>
       <div className={styles.header}>
         <div>
-          {PAGES.map((page) => (
-            <NavigationLink
-              key={page.label}
-              to={page.path}
-              label={page.label}
-            />
-          ))}
+          <NavigationLink label="News" viewName={StateNewsView.All} />
+          <NavigationLink
+            label="Bookmarks"
+            viewName={StateNewsView.Bookmarks}
+          />
         </div>
         <SearchInput className={styles.search} />
       </div>
       <div className={styles.content}>
-        <LatestNewsView className={styles.latestNews} />
-        {props.children}
+        <Content />
       </div>
     </div>
+  );
+};
+
+const Content = (): JSX.Element => {
+  const isFetching = useSelector(selectIsFetching);
+  const fetchError = useSelector(selectFetchError);
+
+  if (isFetching) {
+    return (
+      <div className={styles.spinnerContainer}>
+        <Spinner />
+      </div>
+    );
+  }
+
+  if (fetchError) {
+    return <div>{fetchError.message}</div>;
+  }
+
+  return (
+    <>
+      <LatestNewsView className={styles.latestNews} />
+      <NewsView />
+    </>
   );
 };

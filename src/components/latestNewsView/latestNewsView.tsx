@@ -1,16 +1,21 @@
 import * as React from "react";
 import cn from "classnames";
-import { news } from "../../testData";
 import { NewsCard } from "../newsCard/newsCard";
 import styles from "./latestNewsView.module.css";
+import { useSelector } from "react-redux";
+import { selectLatestNews } from "../../store/news";
 
 interface IProps {
   className?: string;
 }
 
-export const LatestNewsView = ({ className }: IProps): JSX.Element => {
-  const data = news[0];
+export const LatestNewsView = ({ className }: IProps): JSX.Element | null => {
+  const latestNews = useSelector(selectLatestNews);
   const rootClassName = cn(styles.root, className);
 
-  return <NewsCard className={rootClassName} data={data} latest />;
+  if (!latestNews) {
+    return null;
+  }
+
+  return <NewsCard className={rootClassName} data={latestNews} latest />;
 };

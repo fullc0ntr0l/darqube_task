@@ -1,20 +1,33 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
-import { Link, useMatch } from "@reach/router";
 import styles from "./navigationLink.module.css";
+import { NewsView, selectCurrentView, setCurrentView } from "../../store/news";
 
 interface IProps {
-  to: string;
   label: string;
+  viewName: NewsView;
 }
 
-export const NavigationLink = ({ to, label }: IProps): JSX.Element => {
-  const match = useMatch(to);
-  const className = cn(styles.link, match && styles.selectedLink);
+export const NavigationLink = ({ label, viewName }: IProps): JSX.Element => {
+  const dispatch = useDispatch();
+  const currentView = useSelector(selectCurrentView);
+  const className = cn(
+    styles.link,
+    currentView === viewName && styles.selectedLink
+  );
+
+  const handleClick = React.useCallback(
+    () => dispatch(setCurrentView(viewName)),
+    [dispatch, viewName]
+  );
 
   return (
-    <Link to={to} className={className}>
-      {label}
-    </Link>
+    <input
+      type="button"
+      className={className}
+      value={label}
+      onClick={handleClick}
+    />
   );
 };

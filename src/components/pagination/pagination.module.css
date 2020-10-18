@@ -32,6 +32,11 @@
   margin-right: 8px;
 }
 
+.button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
 @media only screen and (max-width: 641px) {
   .button {
     width: 80px;

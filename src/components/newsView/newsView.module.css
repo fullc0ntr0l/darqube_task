@@ -1,5 +1,6 @@
 .root {
   display: flex;
+  flex-shrink: 0;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 875px;
@@ -9,15 +10,14 @@
   margin-bottom: 16px;
 }
 
+.emptyPlaceholder {
+  font-size: 20px;
+  opacity: 0.75;
+}
+
 @media only screen and (max-width: 1286px) {
   .root {
     width: 578px;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .firstCard {
-    display: none;
   }
 }
 
