@@ -22,7 +22,7 @@ export interface IState {
   isFetching: boolean;
   fetchError: Error | undefined;
   fetchedNews: INews[];
-  bookmarkedNews: INews[];
+  bookmarkedNews: Record<number, INews>;
   currentView: NewsView;
   searchKey: string;
   searchMinLength: number;
@@ -34,7 +34,7 @@ const initialState: IState = {
   isFetching: false,
   fetchError: undefined,
   fetchedNews: [],
-  bookmarkedNews: [],
+  bookmarkedNews: {},
   currentView: NewsView.All,
   searchKey: "",
   searchMinLength: 3,
@@ -72,6 +72,14 @@ export const newsSlice = createSlice({
     setPreviousPage: (state) => {
       state.currentPage -= 1;
     },
+    addToBookmark: (state, action: PayloadAction<INews>) => {
+      const newItem = action.payload;
+
+      state.bookmarkedNews[newItem.id] = newItem;
+    },
+    removeFromBookMark: (state, action: PayloadAction<number>) => {
+      delete state.bookmarkedNews[action.payload];
+    },
   },
 });
 
@@ -83,6 +91,8 @@ export const {
   setSearchKey,
   setNextPage,
   setPreviousPage,
+  addToBookmark,
+  removeFromBookMark,
 } = newsSlice.actions;
 
 export const fetchNews = (): AppThunk => async (dispatch) => {
@@ -113,6 +123,8 @@ export const fetchNews = (): AppThunk => async (dispatch) => {
 // Selectors
 export const selectIsFetching = (state: RootState) => state.news.isFetching;
 export const selectFetchedNews = (state: RootState) => state.news.fetchedNews;
+export const selectBookmarkedNews = (state: RootState) =>
+  state.news.bookmarkedNews;
 export const selectFetchError = (state: RootState) => state.news.fetchError;
 export const selectLatestNews = (state: RootState) => state.news.fetchedNews[0];
 export const selectCurrentView = (state: RootState) => state.news.currentView;
@@ -123,5 +135,5 @@ export const selectCurrentPage = (state: RootState) => state.news.currentPage;
 export const selectItemsPerPage = (state: RootState) => state.news.itemsPerPage;
 export const selectCurrentViewAllItems = (state: RootState) =>
   state.news.currentView === NewsView.Bookmarks
-    ? state.news.bookmarkedNews
+    ? Object.values(state.news.bookmarkedNews)
     : state.news.fetchedNews;

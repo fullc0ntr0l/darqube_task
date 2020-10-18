@@ -14,9 +14,9 @@ export const NewsView = (): JSX.Element => {
       ) : (
         <>
           {currentItems.map((data) => (
-            <NewsCard key={data.id} data={data} className={styles.card} />
+            <NewsCard key={data.id} data={data} />
           ))}
-          <Pagination />
+          <Pagination className={styles.pagination} />
         </>
       )}
     </div>

@@ -4,8 +4,15 @@ import cn from "classnames";
 import styles from "./newsCard.module.css";
 import upperRightArrow from "../../assets/upperRightArrow.svg";
 import bookmarkAdd from "../../assets/bookmarkAdd.svg";
+import bookmarkAdded from "../../assets/bookmarkAdded.svg";
 import rightArrow from "../../assets/rightArrow.svg";
-import { INews } from "../../store/news";
+import {
+  addToBookmark,
+  INews,
+  removeFromBookMark,
+  selectBookmarkedNews,
+} from "../../store/news";
+import { useDispatch, useSelector } from "react-redux";
 
 interface IProps {
   data: INews;
@@ -15,9 +22,24 @@ interface IProps {
 
 export const NewsCard = ({ data, className, latest }: IProps): JSX.Element => {
   const rootClassName = cn(styles.root, className);
+  const dispatch = useDispatch();
+  const bookmarkedNews = useSelector(selectBookmarkedNews);
+  const isBookmarked = React.useMemo(() => !!bookmarkedNews[data.id], [
+    bookmarkedNews,
+    data.id,
+  ]);
   const date = React.useMemo(() => format(data.datetime * 1000, "d MMM"), [
     data.datetime,
   ]);
+
+  const handleAddBookmark = React.useCallback(
+    () => dispatch(addToBookmark(data)),
+    [data, dispatch]
+  );
+  const handleRemoveBookmark = React.useCallback(
+    () => dispatch(removeFromBookMark(data.id)),
+    [data.id, dispatch]
+  );
 
   return (
     <div className={rootClassName}>
@@ -52,11 +74,21 @@ export const NewsCard = ({ data, className, latest }: IProps): JSX.Element => {
         </div>
         <div className={styles.rightFooter}>
           <img src={upperRightArrow} alt="Go to url" className={styles.icon} />
-          <img
-            src={bookmarkAdd}
-            alt="Add to bookmarks"
-            className={styles.icon}
-          />
+          {isBookmarked ? (
+            <img
+              src={bookmarkAdded}
+              alt="Remove from bookmarks"
+              className={styles.icon}
+              onClick={handleRemoveBookmark}
+            />
+          ) : (
+            <img
+              src={bookmarkAdd}
+              alt="Add to bookmarks"
+              className={styles.icon}
+              onClick={handleAddBookmark}
+            />
+          )}
         </div>
       </div>
     </div>

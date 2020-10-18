@@ -1,4 +1,5 @@
 import * as React from "react";
+import cn from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { useCurrentViewSearchItems } from "../../hooks/useCurrentViewSearchItems";
 import {
@@ -9,7 +10,12 @@ import {
 } from "../../store/news";
 import styles from "./pagination.module.css";
 
-export const Pagination = (): JSX.Element | null => {
+interface IProps {
+  className?: string;
+}
+
+export const Pagination = ({ className }: IProps): JSX.Element | null => {
+  const rootClassName = cn(styles.root, className);
   const dispatch = useDispatch();
   const total = useCurrentViewSearchItems().length;
   const currentPage = useSelector(selectCurrentPage);
@@ -31,7 +37,7 @@ export const Pagination = (): JSX.Element | null => {
   const lastItemIndex = Math.min(firstItemIndex + itemsPerPage - 1, total);
 
   return (
-    <div className={styles.root}>
+    <div className={rootClassName}>
       <div className={styles.text}>
         {firstItemIndex}-{lastItemIndex}{" "}
         <span className={styles.textTotal}>out of {total}</span>
