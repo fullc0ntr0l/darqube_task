@@ -1,7 +1,8 @@
 {
   "name": "darqube_task",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "https://fullc0ntr0l.github.io/darqube_task",
+  "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.2.5",
     "@testing-library/jest-dom": "^4.2.4",
@@ -23,6 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -44,6 +46,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.10",
     "@types/date-fns": "^2.6.0",
+    "gh-pages": "^3.1.0",
     "prettier": "^2.1.2"
   }
 }
