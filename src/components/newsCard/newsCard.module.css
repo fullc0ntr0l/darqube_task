@@ -3,6 +3,17 @@
   width: 281px;
   border-radius: 8px;
   position: relative;
+  text-decoration: none;
+  cursor: inherit;
+}
+
+.root,
+.root:link,
+.root:visited,
+.root:hover,
+.root:focus,
+.root:active {
+  color: inherit;
 }
 
 .image {

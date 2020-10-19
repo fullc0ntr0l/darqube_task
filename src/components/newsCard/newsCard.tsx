@@ -33,16 +33,29 @@ export const NewsCard = ({ data, className, latest }: IProps): JSX.Element => {
   ]);
 
   const handleAddBookmark = React.useCallback(
-    () => dispatch(addToBookmark(data)),
+    (event: React.MouseEvent<HTMLImageElement>) => {
+      event.preventDefault();
+
+      dispatch(addToBookmark(data));
+    },
     [data, dispatch]
   );
   const handleRemoveBookmark = React.useCallback(
-    () => dispatch(removeFromBookMark(data.id)),
+    (event: React.MouseEvent<HTMLImageElement>) => {
+      event.preventDefault();
+
+      dispatch(removeFromBookMark(data.id));
+    },
     [data.id, dispatch]
   );
 
   return (
-    <div className={rootClassName}>
+    <a
+      href={data.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={rootClassName}
+    >
       <div
         className={styles.image}
         style={{ backgroundImage: `url(${data.image})` }}
@@ -91,6 +104,6 @@ export const NewsCard = ({ data, className, latest }: IProps): JSX.Element => {
           )}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
