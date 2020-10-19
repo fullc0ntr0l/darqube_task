@@ -1,4 +1,4 @@
-`AAPL` news cards. List latest news from `finnhub.io`.
+`AAPL` news cards. List latest news from `finnhub.io`. Live demo https://fullc0ntr0l.github.io/darqube_task/
 
 Key features:
 
