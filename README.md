@@ -1,5 +1,8 @@
 `AAPL` news cards. List latest news from `finnhub.io`. Live demo https://fullc0ntr0l.github.io/darqube_task/
 
+![image](https://user-images.githubusercontent.com/11547199/96443865-fb05b300-1215-11eb-90f5-dd8f10bffc71.png)
+
+
 Key features:
 
 - Two pages: `All news` and `Bookmarks`
