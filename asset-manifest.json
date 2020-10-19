@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/darqube_task/static/css/main.c1774905.chunk.css",
+    "main.js": "/darqube_task/static/js/main.8cce2d3d.chunk.js",
+    "main.js.map": "/darqube_task/static/js/main.8cce2d3d.chunk.js.map",
+    "runtime-main.js": "/darqube_task/static/js/runtime-main.d8690308.js",
+    "runtime-main.js.map": "/darqube_task/static/js/runtime-main.d8690308.js.map",
+    "static/js/2.a5f21a92.chunk.js": "/darqube_task/static/js/2.a5f21a92.chunk.js",
+    "static/js/2.a5f21a92.chunk.js.map": "/darqube_task/static/js/2.a5f21a92.chunk.js.map",
+    "index.html": "/darqube_task/index.html",
+    "precache-manifest.c511298f56d56dde3cdbdeafa3a0a8ad.js": "/darqube_task/precache-manifest.c511298f56d56dde3cdbdeafa3a0a8ad.js",
+    "service-worker.js": "/darqube_task/service-worker.js",
+    "static/css/main.c1774905.chunk.css.map": "/darqube_task/static/css/main.c1774905.chunk.css.map",
+    "static/js/2.a5f21a92.chunk.js.LICENSE.txt": "/darqube_task/static/js/2.a5f21a92.chunk.js.LICENSE.txt",
+    "static/media/bookmarkAdd.svg": "/darqube_task/static/media/bookmarkAdd.7d423f69.svg",
+    "static/media/bookmarkAdded.svg": "/darqube_task/static/media/bookmarkAdded.94370750.svg",
+    "static/media/rightArrow.svg": "/darqube_task/static/media/rightArrow.008848dd.svg",
+    "static/media/searchInput.module.css": "/darqube_task/static/media/search.72297632.svg",
+    "static/media/upperRightArrow.svg": "/darqube_task/static/media/upperRightArrow.25d94ebc.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d8690308.js",
+    "static/js/2.a5f21a92.chunk.js",
+    "static/css/main.c1774905.chunk.css",
+    "static/js/main.8cce2d3d.chunk.js"
+  ]
+}
