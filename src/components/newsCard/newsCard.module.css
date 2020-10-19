@@ -3,17 +3,6 @@
   width: 281px;
   border-radius: 8px;
   position: relative;
-  text-decoration: none;
-  cursor: inherit;
-}
-
-.root,
-.root:link,
-.root:visited,
-.root:hover,
-.root:focus,
-.root:active {
-  color: inherit;
 }
 
 .image {
@@ -101,6 +90,12 @@
   align-items: center;
 }
 
+.leftFooterLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .researchText {
   font-size: 12px;
 }
@@ -111,6 +106,7 @@
 }
 
 .source {
+  flex: 1;
   font-size: 12px;
   opacity: 0.35;
   max-width: 50%;

@@ -13,6 +13,7 @@ import {
   selectBookmarkedNews,
 } from "../../store/news";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "../link/link";
 
 interface IProps {
   data: INews;
@@ -50,12 +51,7 @@ export const NewsCard = ({ data, className, latest }: IProps): JSX.Element => {
   );
 
   return (
-    <a
-      href={data.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={rootClassName}
-    >
+    <div className={rootClassName}>
       <div
         className={styles.image}
         style={{ backgroundImage: `url(${data.image})` }}
@@ -63,19 +59,23 @@ export const NewsCard = ({ data, className, latest }: IProps): JSX.Element => {
       <div className={styles.related}>{data.related}</div>
       {latest && <div className={styles.latestBadge}>Latest research</div>}
       <div className={styles.headlineContainer}>
-        <div className={styles.headline}>{data.headline}</div>
-        <div className={styles.summary}>{data.summary}</div>
+        <Link url={data.url}>
+          <div className={styles.headline}>{data.headline}</div>
+          <div className={styles.summary}>{data.summary}</div>
+        </Link>
       </div>
       <div className={styles.footer}>
         <div className={styles.leftFooter}>
           {latest && (
             <>
-              <img
-                src={rightArrow}
-                alt="Read the research"
-                className={styles.researchIcon}
-              />
-              <div className={styles.researchText}>Read the research</div>
+              <Link url={data.url} className={styles.leftFooterLink}>
+                <img
+                  src={rightArrow}
+                  alt="Read the research"
+                  className={styles.researchIcon}
+                />
+                <div className={styles.researchText}>Read the research</div>
+              </Link>
               <div className={styles.separator} />
             </>
           )}
@@ -86,7 +86,13 @@ export const NewsCard = ({ data, className, latest }: IProps): JSX.Element => {
           </div>
         </div>
         <div className={styles.rightFooter}>
-          <img src={upperRightArrow} alt="Go to url" className={styles.icon} />
+          <Link url={data.url}>
+            <img
+              src={upperRightArrow}
+              alt="Go to url"
+              className={styles.icon}
+            />
+          </Link>
           {isBookmarked ? (
             <img
               src={bookmarkAdded}
@@ -104,6 +110,6 @@ export const NewsCard = ({ data, className, latest }: IProps): JSX.Element => {
           )}
         </div>
       </div>
-    </a>
+    </div>
   );
 };
