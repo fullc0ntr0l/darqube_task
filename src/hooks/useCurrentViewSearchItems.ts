@@ -23,8 +23,11 @@ export const useCurrentViewSearchItems = () => {
           return true;
         }
 
+        const searchKeyLowerCase = searchKey.toLowerCase();
+
         return (
-          item.headline.includes(searchKey) || item.summary.includes(searchKey)
+          item.headline.toLowerCase().includes(searchKeyLowerCase) ||
+          item.summary.includes(searchKeyLowerCase)
         );
       }),
     [allItems, isSearchTriggered, latestNews, searchKey]
