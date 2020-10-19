@@ -30,11 +30,14 @@ export interface IState {
   currentPage: number;
 }
 
+export const BOOKMARKS_STORAGE_KEY = "bookmarked-news";
 const initialState: IState = {
   isFetching: false,
   fetchError: undefined,
   fetchedNews: [],
-  bookmarkedNews: {},
+  bookmarkedNews: JSON.parse(
+    localStorage.getItem(BOOKMARKS_STORAGE_KEY) || "{}"
+  ),
   currentView: NewsView.All,
   searchKey: "",
   searchMinLength: 3,

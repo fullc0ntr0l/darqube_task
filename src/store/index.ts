@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { newsSlice } from "./news";
+import { BOOKMARKS_STORAGE_KEY, newsSlice } from "./news";
 
 export const store = configureStore({
   reducer: {
@@ -14,3 +14,9 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+store.subscribe(() => {
+  const { bookmarkedNews } = store.getState().news;
+
+  localStorage.setItem(BOOKMARKS_STORAGE_KEY, JSON.stringify(bookmarkedNews));
+});
